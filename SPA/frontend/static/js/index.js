@@ -1,3 +1,9 @@
+import home from "./views/home.js";
+import tournaments from "./views/tournaments.js";
+import Support from "./views/Support.js";
+import contact from "./views/contact.js";
+
+
 const navigateTo = url => {
     history.pushState(null, null, url);
     router();
@@ -5,10 +11,10 @@ const navigateTo = url => {
 
 const router = async () => {
     const routes = [
-        { path: "/", view: () => console.log("Viewing Dashboard") },
-        { path: "/tournaments", view: () => console.log("Viewing Tournaments") },
-        { path: "/support", view: () => console.log("Viewing Support The Movement") },
-        { path: "/contact", view: () => console.log("Viewing Contact Us") },
+        { path: "/", view: home},
+        { path: "/tournaments", view:tournaments },
+        { path: "/support", view: Support },
+        { path: "/contact", view: contact },
     ];
 
     const potentialMatches = routes.map(route => {
@@ -27,7 +33,13 @@ const router = async () => {
         };
     }
 
-    console.log(match.route.view());
+
+    const view = new match.route.view();
+
+
+    document.querySelector("#app").innerHTML = await view.getHtml();
+
+    console.log( new match.route.view());
 };
 
 window.addEventListener("popstate", router);
