@@ -1,0 +1,10 @@
+#Dog {
+    color: aqua;
+    text-align: center;
+    size: 1.2rem;
+}
+
+.nav {
+    background-color: rgb(131, 114, 114);
+    color: rgb(255, 255, 255);
+}
